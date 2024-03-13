@@ -60,6 +60,20 @@ export const Post = () => {
     }
   };
 
+  const handleTextareaKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Impede o comportamento padrão de enviar o formulário
+      const textarea = e.target;
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const value = textarea.value;
+
+      // Insere uma quebra de linha na posição do cursor
+      textarea.value = value.substring(0, start) + '\n' + value.substring(end);
+      textarea.selectionStart = textarea.selectionEnd = start + 1; // Coloca o cursor após a quebra de linha
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -141,7 +155,15 @@ export const Post = () => {
           value={textoAdicional} // Mostrar as features separadas por vírgula
           onChange={(e) => SetTextoAdicional(e.target.value)}
         />
-        <Input label="Descrição completa" name="descricao_completa" type="textarea" {...descricao_completa}/>
+        <div className="form-control">
+          <label htmlFor="descricao_completa">Descrição completa:</label>
+          <textarea 
+            id="descricao_completa" 
+            name="descricao_completa" 
+            {...descricao_completa}
+            onKeyDown={handleTextareaKeyPress}
+          />
+        </div>
         <Input label="Quantidade de salas" name="qtd_salas" type="number" {...qtd_salas}/>
         <Input label="Quantidade de banheiros" name="qtd_banheiros" type="number" {...qtd_banheiros}/>
         <Input label="Quantidade de quartos" name="qtd_quartos" type="number" {...qtd_quartos}/>

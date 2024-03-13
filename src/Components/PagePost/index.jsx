@@ -104,7 +104,7 @@ export const PostPage = () => {
 
                 <p id="description">{data.breve_descricao}</p>
                 <button id="button-price">
-                  <a href={window.location.href}>
+                  <a href={`https://wa.me//5512996088228?text=Tenho%20interesse%20em%20comprar%20este%20imovel:%20${window.location.href}`}>
                   Mais informações
                   </a>
                 </button>
@@ -158,7 +158,9 @@ export const PostPage = () => {
                 <hr></hr>
               <div>
                 <h1 id="full-description">Descrição completa</h1>
-                <p id="content_desc">{data.descricao_completa}</p>
+                {
+                  data.descricao_completa && <p id="content_desc" dangerouslySetInnerHTML={{ __html: data.descricao_completa.replace(/\n/g, "<br>") }}></p>
+                }
               </div>
               
               <hr></hr>

@@ -49,6 +49,20 @@ export const EditPost = () => {
     }
   };
 
+  const handleTextareaKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Impede o comportamento padrão de enviar o formulário
+      const textarea = e.target;
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const value = textarea.value;
+
+      // Insere uma quebra de linha na posição do cursor
+      textarea.value = value.substring(0, start) + '\n' + value.substring(end);
+      textarea.selectionStart = textarea.selectionEnd = start + 1; // Coloca o cursor após a quebra de linha
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -165,7 +179,15 @@ export const EditPost = () => {
           value={textoAdicional}
           onChange={(e) => setTextoAdicional(e.target.value)}
         />
-        <Input label="Descrição completa" name="descricao_completa" type="textarea" {...descricao_completa} />
+        <div className="form-control">
+          <label htmlFor="descricao_completa">Descrição completa:</label>
+          <textarea 
+            id="descricao_completa" 
+            name="descricao_completa" 
+            {...descricao_completa}
+            onKeyDown={handleTextareaKeyPress}
+          />
+        </div>
         <Input label="Cidade" name="cidade" type="text" {...cidade} />
         <Input label="Bairro" name="bairro" type="text" {...bairro} />
         <Input label="Quantidade de salas" name="qtd_salas" type="number" {...qtd_salas}/>
