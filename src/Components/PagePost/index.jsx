@@ -98,13 +98,11 @@ export const PostPage = () => {
                   {data.localidade}
                 </p>
                 <h1 id="title">{data.title}</h1>
-
-
-                
-
-                <p id="description">{data.breve_descricao}</p>
+                {
+                  data.breve_descricao && <p id="description" dangerouslySetInnerHTML={{ __html: data.breve_descricao.replace(/\n/g, "<br>") }}></p>
+                }
                 <button id="button-price">
-                  <a href={`https://wa.me//5512996088228?text=Tenho%20interesse%20em%20comprar%20este%20imovel:%20${window.location.href}`}>
+                  <a href={`https://wa.me//+554191032078?text=Tenho%20interesse%20em%20comprar%20este%20imovel:%20${window.location.href}`} target='blank'>
                   Mais informações
                   </a>
                 </button>

@@ -164,7 +164,6 @@ export const EditPost = () => {
         </select>
         <Input label="Preço" name="preco" type="number" {...preco} />
         <Input label="Localidade" name="localidade" type="text" {...localidade} />
-        <Input label="Breve descricão" name="breve_descricao" type="text" {...breve_descricao} />
         <Input
           label="Coloque as caracteristicas da casa separadas por virgula"
           name="features"
@@ -185,6 +184,16 @@ export const EditPost = () => {
             id="descricao_completa" 
             name="descricao_completa" 
             {...descricao_completa}
+            onKeyDown={handleTextareaKeyPress}
+          />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="breve_descricao">Breve descrição:</label>
+          <textarea 
+            id="breve_descricao" 
+            name="breve_descricao" 
+            {...breve_descricao}
             onKeyDown={handleTextareaKeyPress}
           />
         </div>
