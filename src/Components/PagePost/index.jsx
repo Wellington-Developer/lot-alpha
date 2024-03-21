@@ -162,6 +162,9 @@ export const PostPage = () => {
               </div>
               
               <hr></hr>
+              {
+                console.log(data)
+              }
                 
               <div className="right-side__map">
                 <h1 id="map-endereco">Endereço</h1>

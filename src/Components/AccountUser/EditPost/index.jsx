@@ -35,6 +35,11 @@ export const EditPost = () => {
   const [locacaoOuVenda, setLocacaoOuVenda] = useState('');
   const tipos = ['Apartamento', 'Casa', 'Sobrado', 'Kitnet', 'Chalé', 'Loft', 'Duplex', 'Triplex', 'Flat', 'Cobertura', 'Terreno', 'Comercial'];
   const locacaoOuVendaOptions = ['Locacao', 'Venda'];
+  const [coverImage, setCoverImage] = useState(null); 
+
+  const handleCoverImageChange = (e) => {
+    setCoverImage(e.target.files[0]);
+  };
 
   const handlePost = () => {
     if(loading) {
@@ -66,6 +71,9 @@ export const EditPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    if (coverImage) {
+      formData.append('cover_image', coverImage); // Include cover image in formData
+    }
     formData.append('cidade', cidade.value);
     formData.append('bairro', bairro.value);
     formData.append('tipo', tipo);
@@ -226,6 +234,10 @@ export const EditPost = () => {
         <div id="arquivos">
           <label htmlFor="arquivo">Enviar arquivos</label>
           <input type="file" multiple onChange={handleImgChange} name="arquivo" id="arquivo" />
+        </div>
+        <div id="cover_image">
+          <label htmlFor="coverImage">Cover Image</label>
+          <input type="file" accept="image/*" onChange={handleCoverImageChange} name="cover_image" id="cover_image"/>
         </div>
         {
           loading ?

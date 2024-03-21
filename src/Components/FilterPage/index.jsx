@@ -3,6 +3,7 @@ import { UserContext } from '../../UserContext';
 import { useContext, useEffect, useState } from 'react';
 import { Slider } from '@mui/material';
 import { Post } from '../RowPosts/Post';
+import { useParams } from 'react-router-dom';
 
 export const FilterPage = () => {
   const { posts, filteredPosts, filterPosts } = useContext(UserContext);
@@ -20,10 +21,12 @@ export const FilterPage = () => {
   const [banheirosMax, setBanheirosMax] = useState(10);
   const [quartosMin, setQuartosMin] = useState(0);
   const [quartosMax, setQuartosMax] = useState(10);
+  const { id } = useParams();
 
   const fetchData = async () => {
     try {
       const response = await fetch('https://huergo.com.br/lot-api/json/api/photo');
+      setTipoNegocio(id)
 
       if (response.ok) {
         const json = await response.json();

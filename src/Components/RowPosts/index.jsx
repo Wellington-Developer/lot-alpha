@@ -103,7 +103,7 @@ export const RowPosts = () => {
         <div className="posts-container__home">
           <div className="info-post__c">
             <h1 id="type">Locação</h1>
-            <Link to="/filtered" id="link">
+            <Link to="/filtered/locacao" id="link">
               Ver todos
             </Link>
           </div>
@@ -130,7 +130,7 @@ export const RowPosts = () => {
         <div className="posts-container__home">
           <div className="info-post__c">
             <h1 id="type">Venda</h1>
-            <Link to="/filtered" id="link">
+            <Link to="/filtered/venda" id="link">
               Ver todos
             </Link>
           </div>

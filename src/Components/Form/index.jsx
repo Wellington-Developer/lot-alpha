@@ -4,7 +4,6 @@ import { MdSearch } from 'react-icons/md';
 import { UserContext } from '../../UserContext';
 import Img1 from '../../../public/assets/1.jpg'
 import Img2 from '../../../public/assets/2.jpg'
-import Img3 from '../../../public/assets/3.jpg'
 
 export const Form = () => {
   const { posts, filterPosts } = useContext(UserContext);
@@ -19,8 +18,7 @@ export const Form = () => {
 
   const images = [
     Img1,
-    Img2,
-    Img3
+    Img2
   ];
 
   const filterData = () => {

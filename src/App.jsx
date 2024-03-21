@@ -28,7 +28,7 @@ function App() {
             <Route path="/simulation" element={<Simulacao />} />
             <Route path="/login" element={<Login />} />
             <Route path="/accountuser/*" element={<AccountUser />} />
-            <Route path="/filtered" element={<FilterPage />} />
+            <Route path="/filtered/:id" element={<FilterPage />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>

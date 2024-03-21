@@ -37,6 +37,7 @@ export const Post = () => {
   const locacaOuVenda = ['Locacao', 'Venda'];
   const statusOptions = ["", "Locado", "Vendido", "Reservado", "Disponivel"];
   const { filterPosts } = useContext(UserContext)
+  const [coverImage, setCoverImage] = useState(null);
 
   useEffect(() => {
     if(data) navigate('/accountuser');
@@ -74,9 +75,16 @@ export const Post = () => {
     }
   };
 
+  const handleCoverImageChange = (e) => {
+    setCoverImage(e.target.files[0]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
+    if (coverImage) {
+      formData.append('cover_image', coverImage);
+    }
     formData.append('cidade', cidade.value);
     formData.append('bairro', bairro.value);
     formData.append('tipo', tipo);
@@ -117,7 +125,6 @@ export const Post = () => {
     const selectedImgs = Array.from(e.target.files);
     setImgs(selectedImgs);
   };
-  console.log(numeroImovel)
 
   return (
     <div className="animeLeft container-form__post">
@@ -204,6 +211,10 @@ export const Post = () => {
         {
           <p id="error">{error}</p>
         }
+        <div id="cover_image">
+          <label htmlFor="cover_image">Foto da Capa</label>
+          <input type="file" accept="image/*" onChange={handleCoverImageChange} name="cover_image" id="cover_image"/>
+        </div>
         <button>Enviar</button>
       </form>
     </div>

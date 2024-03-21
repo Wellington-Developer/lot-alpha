@@ -185,13 +185,18 @@
   padding: 20px;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   border: 1px solid #f1f1f1;
   border-radius: 10px;
-  width: 250px;
+  width: 300px;
   top: 0px;
   left: 20px;
   background: #F5F7FA;
   transition: all 0.3s ease-in-out;
+}
+
+#active h1 {
+  font-size: 1rem;
 }
 
 #resume_value {
