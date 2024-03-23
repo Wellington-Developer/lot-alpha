@@ -206,20 +206,33 @@ export const FilterPage = () => {
             <div className="right-side__post">
               <h1 id="type">Resultados</h1>
               <div className="right-side">
-                {filteredPosts.map((post, index) => (
-                  <Post
-                    title={post.title}
-                    price={post.preco}
-                    locale={post.localidade}
-                    qt_bath={post.qtd_banheiros}
-                    qt_room={post.qtd_quartos}
-                    size={post.metros_totais}
-                    img={post.imagens_relacionadas[0]}
-                    id={post.id}
-                    key={index}
-                    status={post.status}
-                  />
-                ))}
+              {filteredPosts.sort((a, b) => {
+                const statusA = a.status_do_imovel.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                const statusB = b.status_do_imovel.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+                if (statusA === "disponivel" && statusB !== "disponivel" || statusA === "disponível" && statusB !== "disponível") {
+                  return -1;
+                }
+                if (statusA !== "disponivel" && statusB === "disponivel" || statusA !== "disponível" && statusB === "disponível") {
+                  return 1;
+                }
+                
+                // Se os status forem iguais, ordenar com base no id
+                return a.id - b.id;
+              }).map((post, index) => (
+                <Post
+                  title={post.title}
+                  price={post.preco}
+                  locale={post.localidade}
+                  qt_bath={post.qtd_banheiros}
+                  qt_room={post.qtd_quartos}
+                  size={post.metros_totais}
+                  img={post.imagens_relacionadas[0]}
+                  id={post.id}
+                  key={index}
+                  status={post.status}
+                />
+              ))}
               </div>
             </div>
           ) :
