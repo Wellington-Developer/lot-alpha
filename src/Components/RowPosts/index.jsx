@@ -65,9 +65,6 @@ export const RowPosts = () => {
           <div className="controller-post">
             <div className="info-post__c">
               <h1 id="type">Post filtrado</h1>
-              <Link to="/filtered" id="link">
-                Ver todos
-              </Link>
             </div>
             <div className="buttons">
             <button className="scroll-button" onClick={handleScrollLeft}>

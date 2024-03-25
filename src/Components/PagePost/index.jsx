@@ -191,17 +191,19 @@ export const PostPage = () => {
                   )
                 }
               </div>
-              <div id="value-add">
-                  <FaCircleInfo onMouseEnter={() => setModalPrice(true)}
-                  onMouseLeave={() => setModalPrice(false)}/>
-                  <div id={`${modalPrice ? 'active' : ''}`}>
-                    <p>{data.informacao_adicional_titulo}</p>
-                  </div>
+              {
+                data.locacao_ou_venda == "Locacao" && <div id="value-add">
+                <FaCircleInfo onMouseEnter={() => setModalPrice(true)}
+                onMouseLeave={() => setModalPrice(false)}/>
+                <div id={`${modalPrice ? 'active' : ''}`}>
+                  <p>{data.informacao_adicional_titulo}</p>
                 </div>
+              </div>
+              }
 
               <div className="price-post__page">
                 
-                <p id="price-total">Preço total</p>
+                <p id="price-total">Valor</p>
                 <h1>R$ {Number(data.preco).toLocaleString('pt-br', {
                   type: 'currency',
                   currency: 'BRL'
