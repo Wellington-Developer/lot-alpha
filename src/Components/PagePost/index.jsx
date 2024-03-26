@@ -60,8 +60,6 @@ export const PostPage = () => {
     fetchData();
   }, []);
 
-  const textoAdicional = data.texto_adicional;
-  const partes = textoAdicional && textoAdicional.split(/[\–—-]/)
   const feat = data && data.features;
   const feature = feat ? feat.split(',').map(item => item.trim()) : [];
 
@@ -208,11 +206,9 @@ export const PostPage = () => {
                   type: 'currency',
                   currency: 'BRL'
                 })}</h1>
-                <div id="value">
-                {partes && partes.map((parte, index) => (
-                  <p id="resume_value" key={index}>{parte.trim()}</p>
-                ))}
-                </div>
+                {
+                  data.texto_adicional && <p id="value" dangerouslySetInnerHTML={{ __html: data.texto_adicional.replace(/\n/g, "<br>") }}></p>
+                }
               </div>
             </div>
           </div>

@@ -15,6 +15,7 @@ export const EditPost = () => {
   const titulo = useForm();
   const localidade = useForm();
   const breve_descricao = useForm();
+  const texto_adicional = useForm();
   const cidade = useForm();
   const bairro = useForm();
   const descricao_completa = useForm();
@@ -83,6 +84,7 @@ export const EditPost = () => {
     formData.append('titulo', titulo.value);
     formData.append('localidade', localidade.value);
     formData.append('breve_descricao', breve_descricao.value);
+    formData.append('texto_adicional', texto_adicional.value);
     formData.append('descricao_completa', descricao_completa.value);
     formData.append('qtd_salas', qtd_salas.value);
     formData.append('qtd_banheiros', qtd_banheiros.value);
@@ -94,7 +96,6 @@ export const EditPost = () => {
     formData.append('informacao_adicional_paragrafo', informacao_adicional_paragrafo.value);
 
     formData.append('features', features.join(','));
-    formData.append('texto_adicional', textoAdicional);
 
     imgs.forEach((img, index) => {
       formData.append(`img${index + 1}`, img);
@@ -129,6 +130,7 @@ export const EditPost = () => {
         titulo.setValue(filteredPost.title);
         localidade.setValue(filteredPost.localidade);
         breve_descricao.setValue(filteredPost.breve_descricao);
+        texto_adicional.setValue(filteredPost.texto_adicional)
         descricao_completa.setValue(filteredPost.descricao_completa);
         cidade.setValue(filteredPost.cidade);
         bairro.setValue(filteredPost.bairro);
@@ -143,7 +145,6 @@ export const EditPost = () => {
   
         // Verificar se as propriedades existem antes de chamar split
         setFeatures(filteredPost.features ? filteredPost.features.split(',') : []);
-        setTextoAdicional(filteredPost.texto_adicional ? filteredPost.texto_adicional : []);
   
         setTipo(filteredPost.tipo);
         setLocacaoOuVenda(filteredPost.locacao_ou_venda);
@@ -179,13 +180,17 @@ export const EditPost = () => {
           value={features.join(',')} // Mostrar as features separadas por vírgula
           onChange={(e) => setFeatures(e.target.value.split(','))}
         />
-        <Input
-          label="Informações abaixo do preço, separe por traço(-)"
-          name="features"
-          type="text"
-          value={textoAdicional}
-          onChange={(e) => setTextoAdicional(e.target.value)}
-        />
+
+        <div className="form-control">
+          <label htmlFor="texto_adicional">Texto adicional abaixo do valor:</label>
+          <textarea 
+            id="texto_adicional" 
+            name="texto_adicional" 
+            {...texto_adicional}
+            onKeyDown={handleTextareaKeyPress}
+          />
+        </div>
+
         <div className="form-control">
           <label htmlFor="descricao_completa">Descrição completa:</label>
           <textarea 

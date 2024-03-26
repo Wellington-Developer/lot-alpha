@@ -27,7 +27,7 @@ export const Post = () => {
   const informacao_adicional_paragrafo = useForm();
   const [imgs, setImgs] = useState([]);
   const [features, setFeatures] = useState([]);
-  const [textoAdicional, SetTextoAdicional] = useState([]);
+  const texto_adicional = useForm();
   const { data, error, loading, request } = useFetch()
   const navigate = useNavigate();
   const [tipo, setTipo] = useState('');
@@ -107,7 +107,7 @@ export const Post = () => {
   
     // Enviar features como um array
     formData.append('features', features.join(','));
-    formData.append('texto_adicional', textoAdicional);
+    formData.append('texto_adicional', texto_adicional.value);
   
     imgs.forEach((img, index) => {
       formData.append(`img${index + 1}`, img);
@@ -154,13 +154,15 @@ export const Post = () => {
           value={features.join(',')} // Mostrar as features separadas por vírgula
           onChange={(e) => setFeatures(e.target.value.split(','))}
         />
-        <Input
-          label="Texto adicional em baixo de valor."
-          name="texto_adicional"
-          type="text"
-          value={textoAdicional} // Mostrar as features separadas por vírgula
-          onChange={(e) => SetTextoAdicional(e.target.value)}
-        />
+        <div className="form-control">
+          <label htmlFor="texto_adicional">Texto adicional abaixo do valor:</label>
+          <textarea 
+            id="texto_adicional" 
+            name="texto_adicional" 
+            {...texto_adicional}
+            onKeyDown={handleTextareaKeyPress}
+          />
+        </div>
         <div className="form-control">
           <label htmlFor="descricao_completa">Descrição completa:</label>
           <textarea 
