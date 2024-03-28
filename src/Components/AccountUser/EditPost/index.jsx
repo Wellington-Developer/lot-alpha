@@ -29,7 +29,6 @@ export const EditPost = () => {
   const informacao_adicional_paragrafo = useForm();
   const [imgs, setImgs] = useState([]);
   const [features, setFeatures] = useState([]);
-  const [textoAdicional, setTextoAdicional] = useState([]);
   const { error, loading, request } = useFetch();
   const navigate = useNavigate();
   const [tipo, setTipo] = useState('');

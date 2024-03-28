@@ -195,6 +195,13 @@ export const PostPage = () => {
                 onMouseLeave={() => setModalPrice(false)}/>
                 <div id={`${modalPrice ? 'active' : ''}`}>
                   <p>{data.informacao_adicional_titulo}</p>
+                  <p>O valor bruto é de <h1>R$ {Number((data.preco * 125) / 100).toLocaleString('pt-br', {
+                  type: 'currency',
+                  currency: 'BRL'
+                })}</h1> mas oferecemos uma bonificação de sempre que a cobrança é quitada até o vencimento, com este beneficio exclusico o aluguel sai por <h1>R$ {Number(data.preco).toLocaleString('pt-br', {
+                  type: 'currency',
+                  currency: 'BRL'
+                })}</h1></p>
                 </div>
               </div>
               }
